@@ -1,0 +1,74 @@
+{% extends 'user/base.html' %}
+
+{% block my_stat %}
+<div style="display:flex; justify-content:center; background-color: black; color:white;"><h1>Your personal statistics for the {{ account.name }} Budget</h1></div>
+<br><br>
+<div style="display:flex; flex-wrap:wrap;">
+    <div class="card" style="width: 18rem;  background-color:#00FA9A">
+      <div class="card-body">
+        <h3 class="card-title">{{ object_food }}</h3>
+        <h6 class="card-subtitle mb-2 text-muted">Statistics</h6>
+        <h6 class="card-text">
+            Total expenses: <span style="color:red;">{{ total_food }} {{ account.currency }}</span><br>
+            Statistic: <span style="color:red;">{{ stat_food }} %</span> of {{ account.name }}
+        </h6>
+      </div>
+    </div>
+
+    <div class="card" style="width: 18rem; background-color:#00FA9A">
+      <div class="card-body">
+        <h3 class="card-title">{{ object_educ }}</h3>
+        <h6 class="card-subtitle mb-2 text-muted">Statistics</h6>
+        <h6 class="card-text">
+            Total expenses: <span style="color:red;">{{ total_education }} {{ account.currency }}</span><br>
+            Statistic: <span style="color:red;">{{ stat_educ }} %</span> of {{ account.name }}
+        </h6>
+      </div>
+    </div>
+
+    <div class="card" style="width: 18rem; background-color:#00FA9A">
+      <div class="card-body">
+        <h3 class="card-title">{{ object_shop }}</h3>
+        <h6 class="card-subtitle mb-2 text-muted">Statistics</h6>
+        <h6 class="card-text">
+            Total expenses: <span style="color:red;">{{ total_shopping }} {{ account.currency }}</span><br>
+            Statistic: <span style="color:red;">{{ stat_shop }} %</span> of {{ account.name }}
+        </h6>
+      </div>
+    </div>
+
+    <div class="card" style="width: 18rem; background-color:#00FA9A">
+      <div class="card-body">
+        <h3 class="card-title">{{ object_perso }}</h3>
+        <h6 class="card-subtitle mb-2 text-muted">Statistics</h6>
+        <h6 class="card-text">
+            Total expenses: <span style="color:red;">{{ total_perso }} {{ account.currency }}</span><br>
+            Statistic: <span style="color:red;">{{ stat_perso }} %</span> of {{ account.name }}
+        </h6>
+      </div>
+    </div>
+
+    <div class="card" style="width: 18rem; background-color:#00FA9A">
+      <div class="card-body">
+        <h3 class="card-title">{{ object_kids }}</h3>
+        <h6 class="card-subtitle mb-2 text-muted">Statistics</h6>
+        <h6 class="card-text">
+            Total expenses: <span style="color:red;">{{ total_kids }} {{ account.currency }}</span><br>
+            Statistic: <span style="color:red;">{{ stat_kids }} %</span> of {{ account.name }}
+        </h6>
+      </div>
+    </div>
+
+    <div class="card" style="width: 18rem; background-color:#00FA9A">
+      <div class="card-body">
+        <h3 class="card-title">{{ object_transport }}</h3>
+        <h6 class="card-subtitle mb-2 text-muted">Statistics</h6>
+        <h6 class="card-text">
+            Total expenses: <span style="color:red;">{{ total_transport }} {{ account.currency }}</span><br>
+            Statistic: <span style="color:red;">{{ stat_transport }} %</span> of {{ account.name }}
+        </h6>
+      </div>
+    </div>
+
+</div>
+{% endblock %}

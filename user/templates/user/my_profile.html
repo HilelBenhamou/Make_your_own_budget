@@ -1,0 +1,45 @@
+{% extends 'user/base.html' %}
+
+{% block my_profile_block %}
+    <br>
+<div style="display:flex; justify-content:space-evenly;">
+    <div>
+        <div class="card" style="width: 18rem;">
+          <div class="card-header" style="background-color:blue;color:white;">My profile</div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Username: {{ user.username }}</li>
+            <li class="list-group-item">Email: {{ user.email }}</li>
+            <li class="list-group-item">Number of Account: {{ user.account_set.all|length }}</li>
+          </ul>
+        </div>
+    </div>
+
+    <div style="display:flex; justify-content:center;">
+        {% block create_account %}{% endblock %}
+    </div>
+</div>
+    <br><br>
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-primary">
+                  <th scope="col"><h6>Account Name</h6></th>
+                  <th scope="col"><h6>Balance left</h6></th>
+                  <th scope="col"></th>
+                  <th scope="col"><a class="btn btn-success" style="background-color:#000080; border-radius:100px;" href="/create_account">Create new Account</a></th>
+                </tr>
+            </thead>
+            {% for account in user.account_set.all %}
+            <tbody>
+                  <tr class="table-danger">
+                      <th scope="row"><h6>{{ account.name }}</h6></th>
+                      <td><h6>{{ account.balance }} {{ account.currency }}</h6></td>
+                      <td><h3><a class="btn btn-success" style="background-color:#000080; border-radius:100px;" href="{% url 'book_account' account.id %}">Go</a></h3></td>
+                      <td><h3><a class="btn btn-success" style="background-color:#000080; border-radius:100px;" href="{% url 'delete_account' account.id %}">Delete</a></h3></td>
+                  </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+     </div>
+
+{% endblock %}

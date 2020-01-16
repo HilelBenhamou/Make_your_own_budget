@@ -1,0 +1,14 @@
+{% extends 'account/book_account.html' %}
+
+
+{% block account_block %}
+<br>
+     <div class="list-group" >
+         {% for account in all_accounts %}
+              <a type="button" href="{% url 'book_account' %}" class="list-group-item list-group-item-action active col-xl-1">
+                {{ account.name }}
+              </a>
+                <br>
+         {% endfor %}
+     </div>
+{% endblock %}

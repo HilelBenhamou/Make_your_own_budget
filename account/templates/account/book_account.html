@@ -1,0 +1,86 @@
+{% extends 'user/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block book_account %}
+    <br>
+
+    <div style="" class="container-fluid">
+        <div class="row" style="border:2px solid black; border-radius:10px; padding:30px; box-shadow: 5px 5px 5px grey;">
+            <ul class="list-group col-md-12">
+                <div style="display: flex; justify-content:space-around;">
+                    <li class="list-group-item" style="background-color:navy; color:white; align-self:center; padding-left:20px; padding-right:20px;"><h2>{{ current_account.name }}</h2></li>
+                    <a id="modalbtn" href="{% url 'transaction' current_account.id %}" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" style="border-radius:100px; color:white; height: 40px; margin-top:15px; background-color:#000080">Add a transaction</a>
+                    <a type="button" class="btn btn-primary" href="{% url 'my_stat' current_account.id %}" style="border-radius:100px; color:white; height: 40px; margin-top:15px; background-color:#000080">My Statistic</a>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="table-warning">
+                          <th scope="col"><h6>Balance at {{ current_account.date_creation }} :</h6></th>
+                          <th scope="col"><h6>Object</h6></th>
+                          <th scope="col"><h6>Comment</h6></th>
+                          <th scope="col"><h6>Status</h6></th>
+                          <th scope="col"><h6>{{ current_account.balance_start }} {{current_account.currency }}</h6></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for transaction in current_account.transaction_set.all %}
+                            {% if transaction.status == 'Debit' %}
+                              <tr class="table-danger">
+                                  <th scope="row"><h6>{{ transaction.transaction_date }}</h6></th>
+                                  <td><h6>{{ transaction.object }}</h6></td>
+                                  <td><h6>{{ transaction.comment }}</h6></td>
+                                  <td><h6>{{ transaction.status }}</h6></td>
+                                  <td><h6>{{ transaction.amount }} {{ current_account.currency }}</h6></td>
+                              </tr>
+                            {% elif transaction.status == 'Credit' %}
+                              <tr class="table-primary">
+                                  <th scope="row"><h6>{{ transaction.transaction_date }}</h6></th>
+                                  <td><h6>{{ transaction.object }}</h6></td>
+                                  <td><h6>{{ transaction.comment }}</h6></td>
+                                  <td><h6>{{ transaction.status }}</h6></td>
+                                  <td><h6>{{ transaction.amount }} {{ current_account.currency }}</h6></td>
+                              </tr>
+                            {% endif %}
+
+                        {% endfor %}
+                        <tr class="table-warning">
+                          <th scope="col"><h6>Balance at {{ today_date }} :</h6></th>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <th scope="col"><h6>{{ current_account.balance }} {{ current_account.currency }}</h6></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </ul>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div style="display:flex; justify-content:center; background-color:#000080;  border:2px solid black; border-radius:10px; width:20rem; padding:30px; box-shadow: 5px 5px 5px grey;">
+                <form method="post">
+                    {% csrf_token %}
+                    <h3 style="color:white;">{{ current_account.name }}</h3>
+                    <h4 style="color:white;">{{ form|crispy }}</h4>
+                    <button type="submit" class="btn btn-success" style="background-color:#00FA9A;">Add</button>
+                </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'user/my_profile.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block create_account %}
+
+<div style="background-color:#000080 ;display:flex; justify-content:center; border:2px solid black;box-shadow: 5px 5px 5px grey; border-radius:10px; width:30rem; padding:30px;">
+    <form method="post">
+        {% csrf_token %}
+        <h4 style="color:white;">{{ form|crispy }}</h4>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</div>
+
+{% endblock %}
