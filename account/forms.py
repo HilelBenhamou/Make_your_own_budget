@@ -7,6 +7,11 @@ class CreateAccountForm(Form, ModelForm):
     class Meta:
         model = Account
         fields = ['name', 'balance_start', 'currency']
+        labels = {
+            'name': ('Name of your Budget'),
+            'balance_start': ('Amount'),
+            'currency': ('Currency')
+        }
 
 
 class TransactionForm(Form, ModelForm):

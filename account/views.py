@@ -64,15 +64,6 @@ def transaction(request, account_id):
                        'today_date': today_date})
 
 
-# def book_account(request):
-#     accounts = Account.objects.filter(user=request.user)
-#     transactions = Transaction.objects.all()
-#     today_date = datetime.now().strftime('%b. %d, %Y')
-#
-#     return render(request, 'account/book_account.html',
-#                   {'accounts': accounts, 'transactions': transactions, 'today_date': today_date})
-
-
 def book_account(request, account_id):
     if request.method == 'POST':
         form = TransactionForm(request.POST)
@@ -125,16 +116,25 @@ def delete_account(request, account_id):
     return redirect('my_profile')
 
 
-# def delete_transaction(request, transaction_id):
-#     transaction = Transaction.objects.get(id=transaction_id)
-#     current_account = Account.objects.get(id=transaction.account)
-#     transaction.delete()
-#     transactions = Transaction.objects.all()
-#     today_date = datetime.now().strftime('%b. %d, %Y')
-#
-#     return render(request, 'account/book_account.html',
-#                   {'transactions': transactions, 'current_account': current_account,
-#                    'today_date': today_date})
+def delete_transaction(request, transaction_id):
+    transaction = Transaction.objects.get(id=transaction_id)
+    current_account = Account.objects.get(id=transaction.account.id)
+    transaction.delete()
+    transactions = Transaction.objects.all()
+    today_date = datetime.now().strftime('%b. %d, %Y')
+
+    if transaction.status == 'Debit':
+        update_account = Account.objects.get(id=transaction.account.id)
+        update_account.balance = update_account.balance + transaction.amount
+        update_account.save()
+    elif transaction.status == 'Credit':
+        update_account = Account.objects.get(id=transaction.account.id)
+        update_account.balance = update_account.balance - transaction.amount
+        update_account.save()
+    return redirect('book_account', account_id=current_account.id)
+    # return render(request, 'account/book_account.html',
+    #               {'transactions': transactions, 'current_account': current_account,
+    #                'today_date': today_date})
 
 
 def my_stat(request, account_id):

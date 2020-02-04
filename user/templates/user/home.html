@@ -1,14 +1,21 @@
 {% extends 'user/base.html' %}
 
 {% block home_block %}
-    <br><br><br>;
+
     {% if not user.is_authenticated %}
+        <div style="display:flex; justify-content:center;">
+            <div class="jumbotron">
+                  <h1 class="display-4">Welcome to Wallet</h1>
+                  <p class="lead">This is a simple web site, where you can follow all your expanses and know where your money goes.<br>You will also know all the statistics of your expanses and could make changes in your life.</p>
+                  <hr class="my-4">
+                  <h5>Click here to register or to login<br>Here to your service !</h5>
+            </div>
+        </div>
         <div style="display:flex; justify-content:space-evenly;">
-            <a class="btn btn-success" style="background-color:#00FA9A; font-size:50px; padding:50px;" href="/register">Register</a>
-            <a class="btn btn-success" style="background-color:#00FA9A; font-size:50px; padding:50px;" href="/login">Login</a>
+            <a class="btn btn-primary" style="font-size:50px; padding:50px;" href="/register">Register</a>
+            <a class="btn btn-primary" style="font-size:50px; padding:50px;" href="/login">Login</a>
         </div>
         <br>
-    {% endif %}
         <div style="display:flex; justify-content:center;">
             {% block register_block %}{% endblock %}
         </div>
@@ -16,5 +23,17 @@
             {% block login_block %}{% endblock %}
         </div>
 
+    {% elif user.is_authenticated %}
+        <div style="display:flex; justify-content:center;">
+            <div class="jumbotron" style="background-color: lightblue;">
+                  <h1 class="display-4">Welcome to Wallet</h1>
+                  <p class="lead">This is a simple web site, where you can follow all your expanses and know where your money goes.<br>You will also know all the statistics of your expanses and could make changes in your life.</p>
+                  <hr class="my-4">
+                  <p>Click here to create your first budget and add all your transactions you've made !<br>Enjoy !!</p>
+                  <a class="btn btn-primary btn-lg" href="/create_account" role="button">Create your Budget</a>
+            </div>
+        </div>
+
+    {% endif %}
 
 {% endblock %}

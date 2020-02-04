@@ -4,7 +4,8 @@
 
 {% block create_account %}
 
-<div style="background-color:#000080 ;display:flex; justify-content:center; border:2px solid black;box-shadow: 5px 5px 5px grey; border-radius:10px; width:30rem; padding:30px;">
+<div style="background-color:#000080 ;display:flex; justify-content:center; flex-direction:column; border:2px solid black;box-shadow: 5px 5px 5px grey; border-radius:10px; width:30rem; padding:30px;">
+    <a type="button" class="btn btn-primary" style="align-self:flex-end;" href="/my_profile">&times;</a>
     <form method="post">
         {% csrf_token %}
         <h4 style="color:white;">{{ form|crispy }}</h4>

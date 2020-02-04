@@ -9,7 +9,7 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Username: {{ user.username }}</li>
             <li class="list-group-item">Email: {{ user.email }}</li>
-            <li class="list-group-item">Number of Account: {{ user.account_set.all|length }}</li>
+            <li class="list-group-item">Number of Budget: {{ user.account_set.all|length }}</li>
           </ul>
         </div>
     </div>
@@ -19,14 +19,14 @@
     </div>
 </div>
     <br><br>
-    <div>
+<div>
         <table class="table table-hover">
             <thead>
                 <tr class="table-primary">
-                  <th scope="col"><h6>Account Name</h6></th>
+                  <th scope="col"><h6>Budget Name</h6></th>
                   <th scope="col"><h6>Balance left</h6></th>
                   <th scope="col"></th>
-                  <th scope="col"><a class="btn btn-success" style="background-color:#000080; border-radius:100px;" href="/create_account">Create new Account</a></th>
+                  <th scope="col"><a class="btn btn-success" style="background-color:#000080; border-radius:100px;" href="/create_account">Create new Budget</a></th>
                 </tr>
             </thead>
             {% for account in user.account_set.all %}
