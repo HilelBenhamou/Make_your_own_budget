@@ -24,7 +24,7 @@ SECRET_KEY = 'ic0_*^z3@^+^0&00$xy$0*_!6pzz3*e0d3@*(e5iw2h^s#&ctr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mywalletbudget.herokuapp.com/']
 
 # Application definition
 
@@ -76,11 +76,11 @@ WSGI_APPLICATION = 'Wallet.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'wallet',
-        'USER': 'postgres',
-        'PASSWORD': '170294',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'davlord3tm57b4',
+        'USER': 'bggxrsfokkrtnp',
+        'PASSWORD': '6915c3d4ff0d418012339b9920ac67a2432ce2084e2de89102b7a538537e684f',
+        'HOST': 'ec2-184-72-235-80.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
